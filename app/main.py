@@ -5,7 +5,7 @@ import shutil
 def main():
     # Uncomment this block to pass the first stage
     
-    knownUserCommands = ["exit", "echo", "type"]
+    knownUserCommands = ["exit", "echo", "type", "pwd"]
     PATH = os.environ.get("PATH")
 
     # Wait for user input
@@ -50,6 +50,9 @@ def main():
             else : 
                 sys.stdout.write(f"{thing}: not found\n")
                 iknow()
+        elif command == "pwd": 
+            sys.stdout.write(f"{os.getcwd()}\n")
+            iknow()
         else :
             iknow()
     iknow()

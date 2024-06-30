@@ -1,5 +1,6 @@
 import sys
 import os
+import shutil
 
 def main():
     # Uncomment this block to pass the first stage
@@ -15,9 +16,12 @@ def main():
         sys.stdout.flush()
         command = input()
         commandcheck  = command.split(" ")[1:]
+        command_parts = command.split(" ")
+        base_command = command_parts[0]
         thing = " ".join(commandcheck)
         if command.split(" ")[0] not in knownUserCommands: 
-            if os.path.isfile(command.split(" ")[0]):
+            command_path = shutil.which(base_command)
+            if command_path:
                     os.system(command)
             else:
                 print(f"{command}: command not found") 

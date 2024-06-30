@@ -23,6 +23,7 @@ def main():
             command_path = shutil.which(base_command)
             if command_path:
                     os.system(command)
+                    iknow()
             else:
                 print(f"{command}: command not found") 
                 iknow()

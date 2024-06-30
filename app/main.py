@@ -17,8 +17,11 @@ def main():
         commandcheck  = command.split(" ")[1:]
         thing = " ".join(commandcheck)
         if command.split(" ")[0] not in knownUserCommands: 
-            sys.stdout.write(f"{command}: command not found\n")
-            iknow() 
+            if os.path.isfile(command.split(" ")[0]):
+                    os.system(command)
+            else:
+                print(f"{command}: command not found") 
+                iknow()
         elif command.split(" ")[0] == "echo": 
             sys.stdout.write(f"{thing}\n")
             iknow()

@@ -4,7 +4,7 @@ import sys
 def main():
     # Uncomment this block to pass the first stage
     
-    knownUserCommands = ["exit", "echo"]
+    knownUserCommands = ["exit", "echo", "type"]
 
     # Wait for user input
     
@@ -23,6 +23,16 @@ def main():
             iknow()
         elif command.split(" ")[0] == "exit":
             if commandcheck != ["0"] : 
+                iknow()
+        elif command.split(" ")[0] == "type": 
+            if len(command.split(" ")) > 1: 
+                if command.split(" ")[1] not in knownUserCommands: 
+                    sys.stdout.write(f"{thing}: not found\n")
+                    iknow()
+                else : 
+                    sys.stdout.write(f"{thing} is a shell builtin\n")
+                    iknow()
+            else : 
                 iknow()
         else :
             iknow()

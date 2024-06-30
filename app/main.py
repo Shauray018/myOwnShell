@@ -53,12 +53,15 @@ def main():
             sys.stdout.write(f"{os.getcwd()}\n")
             iknow()
         elif base_command == "cd":
+            path = commandcheck[0]
             if commandcheck:
+                if path == "~":
+                        path = os.path.expanduser("~")
                 try:
-                    os.chdir(commandcheck[0])
+                    os.chdir(path)
                     iknow() 
                 except FileNotFoundError:
-                    sys.stdout.write(f"cd: {commandcheck[0]}: No such file or directory\n")
+                    sys.stdout.write(f"cd: {path}: No such file or directory\n")
                     iknow()
             else : 
                 os.chdir(os.path.expanduser("~"))

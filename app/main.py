@@ -22,9 +22,7 @@ def main():
             sys.stdout.write(f"{thing}\n")
             iknow()
         elif command.split(" ")[0] == "exit":
-            if commandcheck == ["0"] : 
-                sys.stdout.write("thanks for checking out")
-            else :
+            if commandcheck != ["0"] : 
                 iknow()
         else :
             iknow()

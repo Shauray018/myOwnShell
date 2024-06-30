@@ -38,6 +38,7 @@ def main():
                 iknow()
             elif cmd_path:
                 sys.stdout.write(f"{cmd} is {cmd_path}\n")
+                iknow()
             else : 
                 sys.stdout.write(f"{thing}: not found\n")
                 iknow()

@@ -4,7 +4,7 @@ import sys
 def main():
     # Uncomment this block to pass the first stage
     
-    knownUserCommands = []
+    knownUserCommands = ["exit 0"]
 
     # Wait for user input
     

@@ -3,15 +3,24 @@ import sys
 
 def main():
     # Uncomment this block to pass the first stage
-    sys.stdout.write("$ ")
-    sys.stdout.flush()
+    
+    knownUserCommands = []
 
     # Wait for user input
-    def commandTaker(): 
+    
+
+    def iknow():  
+        sys.stdout.write("$ ")
+        sys.stdout.flush()
         command = input()
-        sys.stdout.write(f"{command}: command not found\n")
-        commandTaker()
-    commandTaker()
+        if command not in knownUserCommands: 
+            sys.stdout.write(f"{command}: command not found\n")
+            iknow() 
+
+    iknow()
+
+        
+    
 
 if __name__ == "__main__":
     main()

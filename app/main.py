@@ -19,7 +19,7 @@ def main():
             sys.stdout.write(f"{command}: command not found\n")
             iknow() 
         elif command.split(" ")[0] == "echo": 
-            sys.stdout.write(f"{thing} \n")
+            sys.stdout.write(f"{thing}\n")
             iknow()
         elif command.split(" ")[0] == "exit":
             if commandcheck == ["0"] : 

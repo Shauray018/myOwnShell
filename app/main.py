@@ -5,12 +5,11 @@ import shutil
 def main():
     # Uncomment this block to pass the first stage
     
-    knownUserCommands = ["exit", "echo", "type", "pwd"]
+    knownUserCommands = ["exit", "echo", "type", "pwd", "cd"]
     PATH = os.environ.get("PATH")
 
     # Wait for user input
-    
-
+    # os.chdir(path)c
     def iknow():  
         sys.stdout.write("$ ")
         sys.stdout.flush()
@@ -27,13 +26,13 @@ def main():
             else:
                 print(f"{command}: command not found") 
                 iknow()
-        elif command.split(" ")[0] == "echo": 
+        elif base_command == "echo": 
             sys.stdout.write(f"{thing}\n")
             iknow()
-        elif command.split(" ")[0] == "exit":
+        elif base_command == "exit":
             if commandcheck != ["0"] : 
                 iknow()
-        elif command.split(" ")[0] == "type" and len(command.split(" ")) > 1: 
+        elif base_command == "type" and len(command.split(" ")) > 1: 
             cmd = command.split(" ")[1]
             cmd_path = None
             paths = PATH.split(":")
@@ -53,6 +52,17 @@ def main():
         elif command == "pwd": 
             sys.stdout.write(f"{os.getcwd()}\n")
             iknow()
+        elif base_command == "cd":
+            if commandcheck:
+                try:
+                    os.chdir(commandcheck[0])
+                    iknow() 
+                except FileNotFoundError:
+                    sys.stdout.write(f"cd: {commandcheck[0]}: No such file or directory\n")
+                    iknow()
+            else : 
+                os.chdir(os.path.expanduser("~"))
+                iknow()
         else :
             iknow()
     iknow()

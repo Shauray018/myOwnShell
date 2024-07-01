@@ -1,35 +1,96 @@
-[![progress-banner](https://backend.codecrafters.io/progress/shell/050c3544-0a94-4dbe-a663-6394da3b641d)](https://app.codecrafters.io/users/codecrafters-bot?r=2qF)
+# Simple Shell Emulator
 
-This is a starting point for Python solutions to the
-["Build Your Own Shell" Challenge](https://app.codecrafters.io/courses/shell/overview).
+This is a simple shell emulator implemented in Python. It supports a few basic shell commands including `exit`, `echo`, `type`, `pwd`, and `cd`.
 
-In this challenge, you'll build your own POSIX compliant shell that's capable of
-interpreting shell commands, running external programs and builtin commands like
-cd, pwd, echo and more. Along the way, you'll learn about shell command parsing,
-REPLs, builtin commands, and more.
+## Features
 
-**Note**: If you're viewing this repo on GitHub, head over to
-[codecrafters.io](https://codecrafters.io) to try the challenge.
+- **exit**: Exit the shell. The command `exit 0` will successfully exit the shell.
+- **echo**: Print the provided arguments to the standard output.
+- **type**: Determine if a command is a shell builtin or an external command.
+- **pwd**: Print the current working directory.
+- **cd**: Change the current working directory. Supports the `~` symbol to navigate to the home directory.
 
-# Passing the first stage
+## Requirements
 
-The entry point for your `shell` implementation is in `app/main.py`. Study and
-uncomment the relevant code, and push your changes to pass the first stage:
+- Python 3.x
+- An operating system that supports the standard Unix-like shell commands.
 
-```sh
-git add .
-git commit -m "pass 1st stage" # any msg
-git push origin master
-```
+## Usage
 
-Time to move on to the next stage!
+1. Clone the repository or download the script file.
+2. Ensure you have Python 3.x installed on your system.
+3. Run the script using the following command:
 
-# Stage 2 & beyond
+    ```bash
+    python3 shell_emulator.py
+    ```
 
-Note: This section is for stages 2 and beyond.
+4. You will see a prompt that looks like this:
 
-1. Ensure you have `python (3.11)` installed locally
-1. Run `./your_shell.sh` to run your program, which is implemented in
-   `app/main.py`.
-1. Commit your changes and run `git push origin master` to submit your solution
-   to CodeCrafters. Test output will be streamed to your terminal.
+    ```bash
+    $
+    ```
+
+5. Enter your commands after the prompt.
+
+### Example Commands
+
+- **exit**:
+    ```bash
+    $ exit 0
+    ```
+
+- **echo**:
+    ```bash
+    $ echo Hello, World!
+    Hello, World!
+    ```
+
+- **type**:
+    ```bash
+    $ type cd
+    cd is a shell builtin
+    ```
+
+- **pwd**:
+    ```bash
+    $ pwd
+    /current/working/directory
+    ```
+
+- **cd**:
+    ```bash
+    $ cd /path/to/directory
+    ```
+
+    ```bash
+    $ cd ~
+    ```
+
+## Code Explanation
+
+The main function initializes the known shell commands and sets up the environment path. It defines a helper function `iknow` which is responsible for handling the user input and executing the corresponding commands.
+
+### Known Commands
+
+- **exit**: Exits the shell if the provided argument is `0`.
+- **echo**: Prints the arguments to the standard output.
+- **type**: Checks if the command is a shell builtin or an external command and prints the appropriate message.
+- **pwd**: Prints the current working directory.
+- **cd**: Changes the directory to the specified path. Supports `~` for navigating to the home directory.
+
+### Handling Unknown Commands
+
+If a command is not recognized as a known shell command, it checks if it is an executable in the system's PATH and executes it. If the command is not found, it prints an error message.
+
+### Handling `cd` with `~`
+
+The `cd` command supports changing to the home directory by recognizing the `~` symbol and translating it to the home directory path using `os.path.expanduser("~")`.
+
+## Contributing
+
+Feel free to fork this repository, create issues, or submit pull requests if you have any improvements or bug fixes.
+
+## License
+
+This project is licensed under the MIT License.
